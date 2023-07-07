@@ -7,32 +7,25 @@ import java.util.ArrayList;
 @Entity
 public class TourPackage {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String code;
     @Column
     private String title;
-    @Column(length = 2000)
-    private String description;
-    @OneToMany
-    private ArrayList<Tour> tour;
 
-    public TourPackage(Integer id, String title, String description, ArrayList<Tour> tour) {
-        this.id = id;
+    public TourPackage(String code, String title) {
+        this.code = code;
         this.title = title;
-        this.description = description;
-        this.tour = tour;
     }
 
     protected TourPackage() {
 
     }
 
-    public Integer getId() {
-        return id;
+    public String getCode() {
+        return code;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getTitle() {
@@ -41,21 +34,5 @@ public class TourPackage {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ArrayList<Tour> getTour() {
-        return tour;
-    }
-
-    public void setTour(ArrayList<Tour> tour) {
-        this.tour = tour;
     }
 }
