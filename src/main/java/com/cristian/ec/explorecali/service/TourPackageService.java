@@ -22,12 +22,10 @@ public class TourPackageService {
                 );
     }
 
-    // TODO: complete this method
     public Iterable<TourPackage> lookup() {
         return tourPackageRepository.findAll();
     }
 
-    // TODO: complete this method
     public long total() {
         return tourPackageRepository.count();
     }

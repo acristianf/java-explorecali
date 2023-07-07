@@ -31,8 +31,7 @@ public class Tour {
     @ManyToOne
     private TourPackage tourPackage;
 
-    public Tour(Integer id, String title, String description, String blurb, Float price, Integer duration, Difficulty difficulty, Region region, String bullets, String keywords, TourPackage tourPackage) {
-        this.id = id;
+    public Tour(String title, String description, String blurb, Float price, Integer duration, Difficulty difficulty, Region region, String bullets, String keywords, TourPackage tourPackage) {
         this.title = title;
         this.description = description;
         this.blurb = blurb;
