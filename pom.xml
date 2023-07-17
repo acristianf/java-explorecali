@@ -15,6 +15,7 @@
 	<description>Explore California Microservice</description>
 	<properties>
 		<java.version>20</java.version>
+		<halBrowser.version>3.3.9.RELEASE</halBrowser.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,6 +40,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-browser</artifactId>
+			<version>${halBrowser.version}</version>
 		</dependency>
 	</dependencies>
 

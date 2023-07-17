@@ -9,4 +9,8 @@ Then run like this:
 ```markdown
 java -jar ./target/explorecali-VERSION.jar
 ```
-This runs the server on localhost:8080, just enter the page and you will se links that enables the API use.
+This runs the server on localhost:8080, just enter the page, and you will see the links that enable the API use. <br/>
+If you want to see an overview of the API enter this on your browser: <br/>
+```markdown
+http://localhost:8080/browser/index.html
+```
