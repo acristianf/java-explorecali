@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>20</java.version>
 		<halBrowser.version>3.3.9.RELEASE</halBrowser.version>
+		<hibernateValidator.version>8.0.0.Final</hibernateValidator.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,7 +31,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -45,6 +45,11 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-hal-browser</artifactId>
 			<version>${halBrowser.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernateValidator.version}</version>
 		</dependency>
 	</dependencies>
 
