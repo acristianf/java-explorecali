@@ -7,6 +7,9 @@ import com.cristian.ec.explorecali.domain.TourRatingPk;
 import com.cristian.ec.explorecali.repo.TourRatingRepository;
 import com.cristian.ec.explorecali.repo.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +49,11 @@ public class TourRatingController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<RatingDto> getTourRatings(@PathVariable(value = "tourId") int tourId) {
+    public Page<RatingDto> getTourRatings(@PathVariable(value = "tourId") int tourId, Pageable pageable) {
         verifyTour(tourId);
-        List<RatingDto> ratingDtos = new ArrayList<>();
-        tourRatingRepository.findByPkTourId(tourId).forEach(
-                tourRating -> ratingDtos.add(new RatingDto(tourRating.getRating(), tourRating.getComment(), tourRating.getPk().getCustomerId()))
-        );
-        return ratingDtos;
+        Page<TourRating> ratings = tourRatingRepository.findByPkTourId(tourId, pageable);
+        List<RatingDto> ratingDtos = ratings.stream().map(rating -> new RatingDto(rating.getRating(), rating.getComment(), rating.getPk().getCustomerId())).toList();
+        return new PageImpl<>(ratingDtos, pageable, ratings.getTotalElements());
     }
 
     @GetMapping(path = "/average")
