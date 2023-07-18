@@ -23,6 +23,12 @@ public class TourRating {
         this.comment = comment;
     }
 
+    public TourRating(Tour tour, Integer customerId, Integer rating) {
+        this.pk = new TourRatingPk(tour, customerId);
+        this.comment = null;
+        this.rating = rating;
+    }
+
     public TourRatingPk getPk() {
         return pk;
     }

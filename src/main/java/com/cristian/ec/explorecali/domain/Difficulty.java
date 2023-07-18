@@ -1,7 +1,16 @@
 package com.cristian.ec.explorecali.domain;
 
 public enum Difficulty {
-    Easy, Medium, Difficult, Varies;
+    Easy("Easy"),
+    Medium("Medium"),
+    Difficult("Difficult"),
+    Varies("Varies");
+
+    private final String label;
+
+    Difficulty(String label) {
+        this.label = label;
+    }
 
     public static Difficulty parseDifficulty(String s) throws RuntimeException {
         if (s == null) {
@@ -23,5 +32,9 @@ public enum Difficulty {
             }
             default -> throw new RuntimeException("Couldn't convert to difficulty " + s);
         }
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

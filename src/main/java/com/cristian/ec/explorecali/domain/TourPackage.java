@@ -2,8 +2,6 @@ package com.cristian.ec.explorecali.domain;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-
 @Entity
 public class TourPackage {
     @Id

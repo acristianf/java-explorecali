@@ -2,6 +2,8 @@ package com.cristian.ec.explorecali.domain;
 
 import jakarta.persistence.*;
 
+import java.util.stream.Collectors;
+
 @Entity
 public class Tour {
     @Id
@@ -16,12 +18,10 @@ public class Tour {
     @Column
     private Float price;
     @Column
-    private Integer duration;
+    private String duration;
     @Column
-    @Enumerated
     private Difficulty difficulty;
     @Column
-    @Enumerated
     private Region region;
     @Column(length = 2000)
     private String bullets;
@@ -31,7 +31,7 @@ public class Tour {
     @ManyToOne
     private TourPackage tourPackage;
 
-    public Tour(String title, String description, String blurb, Float price, Integer duration, Difficulty difficulty, Region region, String bullets, String keywords, TourPackage tourPackage) {
+    public Tour(String title, String description, String blurb, Float price, String duration, Difficulty difficulty, Region region, String bullets, String keywords, TourPackage tourPackage) {
         this.title = title;
         this.description = description;
         this.blurb = blurb;
@@ -87,11 +87,11 @@ public class Tour {
         this.price = price;
     }
 
-    public Integer getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

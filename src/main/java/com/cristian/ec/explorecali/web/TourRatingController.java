@@ -6,6 +6,8 @@ import com.cristian.ec.explorecali.domain.TourRating;
 import com.cristian.ec.explorecali.domain.TourRatingPk;
 import com.cristian.ec.explorecali.repo.TourRatingRepository;
 import com.cristian.ec.explorecali.repo.TourRepository;
+import com.cristian.ec.explorecali.services.TourRatingService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,11 +27,13 @@ import java.util.stream.Collectors;
 public class TourRatingController {
     TourRatingRepository tourRatingRepository;
     TourRepository tourRepository;
+    TourRatingService tourRatingService;
 
     @Autowired
-    public TourRatingController(TourRatingRepository tourRatingRepository, TourRepository tourRepository) {
+    public TourRatingController(TourRatingRepository tourRatingRepository, TourRepository tourRepository, TourRatingService tourRatingService) {
         this.tourRatingRepository = tourRatingRepository;
         this.tourRepository = tourRepository;
+        this.tourRatingService = tourRatingService;
     }
 
     protected TourRatingController() {
@@ -97,6 +101,14 @@ public class TourRatingController {
     public void deleteRating(@PathVariable(value = "tourId") int tourId, @PathVariable(value = "customerId") int customerId) {
         TourRating tourRating = verifyTourRating(tourId, customerId);
         tourRatingRepository.delete(tourRating);
+    }
+
+    @PostMapping("/{score}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createManyTourRatings(@PathVariable(value = "tourId") int tourId,
+                                      @PathVariable(value = "score") int score,
+                                      @RequestParam("customers") Integer[] customers) {
+        tourRatingService.createManyTourRatings(tourId, score, customers);
     }
 
     private Tour verifyTour(int tourId) throws NoSuchElementException {
