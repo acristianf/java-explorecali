@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/tours/{tourId}/ratings")
@@ -134,5 +135,13 @@ public class TourRatingController {
     public String return400(NoSuchElementException ex) {
         LOGGER.error("Unable to complete transaction", ex);
         return ex.getMessage();
+    }
+
+    public List<TourRating> lookUpAll() {
+        return (List<TourRating>) tourRatingRepository.findAll();
+    }
+
+    public Optional<TourRating> findByPkTourIdAndPkCustomerId(Integer tourId, Integer customerId) {
+        return tourRatingRepository.findByPkTourIdAndPkCustomerId(tourId, customerId);
     }
 }
