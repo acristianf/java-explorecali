@@ -1,7 +1,7 @@
-DROP TABLE tour_rating, tour, tour_package;
+-- DROP TABLE tour_rating, tour, tour_package, security_user, security_role, user_role;
 CREATE TABLE tour_package
 (
-    code char(2) PRIMARY KEY,
+    code  char(2) PRIMARY KEY,
     title varchar(50) NOT NULL
 );
 
@@ -28,4 +28,27 @@ CREATE TABLE tour_rating
     rating      int,
     comment     varchar(100),
     CONSTRAINT unique_tour_customer_id_rating UNIQUE (tour_id, customer_id)
+);
+
+CREATE TABLE security_user
+(
+    id         bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    username   varchar(255) NOT NULL,
+    password   varchar(255) NOT NULL,
+    first_name varchar(255) NOT NULL,
+    last_name  varchar(255) NOT NULL
+);
+
+CREATE TABLE security_role
+(
+    id          bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    role_name   varchar(255) NOT NULL,
+    description varchar(255) NOT NULL
+);
+
+CREATE TABLE user_role
+(
+    user_id bigint REFERENCES security_user (id),
+    role_id bigint REFERENCES security_role (id),
+    PRIMARY KEY (user_id, role_id)
 );

@@ -2,6 +2,7 @@ package com.cristian.ec.explorecali.repo;
 
 import com.cristian.ec.explorecali.domain.TourRating;
 import com.cristian.ec.explorecali.domain.TourRatingPk;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

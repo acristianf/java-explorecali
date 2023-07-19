@@ -2,6 +2,7 @@ package com.cristian.ec.explorecali.repo;
 
 import com.cristian.ec.explorecali.domain.Tour;
 import com.cristian.ec.explorecali.domain.TourPackage;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Tour", description = "The Tour API")
 public interface TourRepository extends CrudRepository<Tour, Integer>, PagingAndSortingRepository<Tour, Integer> {
 
     Page<Tour> findByTourPackageCode(String code, Pageable pageable);

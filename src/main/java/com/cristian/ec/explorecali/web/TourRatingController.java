@@ -6,6 +6,12 @@ import com.cristian.ec.explorecali.domain.TourRatingPk;
 import com.cristian.ec.explorecali.repo.TourRatingRepository;
 import com.cristian.ec.explorecali.repo.TourRepository;
 import com.cristian.ec.explorecali.service.TourRatingService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +29,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/tours/{tourId}/ratings")
+@Tag(name = "Tour Rating", description = "The Rating for a Tour API")
 public class TourRatingController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TourRatingController.class);
     private TourRatingRepository tourRatingRepository;
@@ -41,6 +48,7 @@ public class TourRatingController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Creates a tour rating")
     public void createTourRating(@PathVariable(value = "tourId") int tourId, @RequestBody @Validated RatingDto ratingDto) {
         LOGGER.info("POST /tours/{}/ratings", tourId);
         Tour tour = verifyTour(tourId);
@@ -54,6 +62,7 @@ public class TourRatingController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Gets pages for tour ratings")
     public Page<RatingDto> getTourRatings(@PathVariable(value = "tourId") int tourId, Pageable pageable) {
         LOGGER.info("GET /tours/{}/ratings", tourId);
         verifyTour(tourId);
@@ -64,6 +73,7 @@ public class TourRatingController {
 
     @GetMapping(path = "/average")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Gets average of ratings for a tour")
     public Map<String, Double> getAverage(@PathVariable(value = "tourId") int tourId) {
         LOGGER.info("GET /tours/{}/ratings/average", tourId);
         verifyTour(tourId);
@@ -79,6 +89,7 @@ public class TourRatingController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Updates a tour's rating")
     public RatingDto updateRating(@PathVariable(value = "tourId") int tourId, @RequestBody @Validated RatingDto ratingDto) {
         LOGGER.info("PUT /tours/{}/ratings", tourId);
         TourRating tourRating = verifyTourRating(tourId, ratingDto.getCustomerId());
@@ -89,6 +100,7 @@ public class TourRatingController {
 
     @PatchMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Updates a tour's rating")
     public RatingDto updateRatingWithPatch(@PathVariable(value = "tourId") int tourId, @RequestBody @Validated RatingDto ratingDto) {
         LOGGER.info("PATCH /tours/{}/ratings", tourId);
         TourRating tourRating = verifyTourRating(tourId, ratingDto.getCustomerId());
@@ -103,6 +115,7 @@ public class TourRatingController {
 
     @DeleteMapping(path = "/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a tour rating")
     public void deleteRating(@PathVariable(value = "tourId") int tourId, @PathVariable(value = "customerId") int customerId) {
         LOGGER.info("DELETE /tours/{}/ratings/{}", tourId, customerId);
         TourRating tourRating = verifyTourRating(tourId, customerId);
@@ -111,6 +124,7 @@ public class TourRatingController {
 
     @PostMapping("/{score}")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create many tour ratings")
     public void createManyTourRatings(@PathVariable(value = "tourId") int tourId,
                                       @PathVariable(value = "score") int score,
                                       @RequestParam("customers") Integer[] customers) {
