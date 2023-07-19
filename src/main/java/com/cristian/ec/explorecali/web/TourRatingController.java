@@ -5,7 +5,7 @@ import com.cristian.ec.explorecali.domain.TourRating;
 import com.cristian.ec.explorecali.domain.TourRatingPk;
 import com.cristian.ec.explorecali.repo.TourRatingRepository;
 import com.cristian.ec.explorecali.repo.TourRepository;
-import com.cristian.ec.explorecali.services.TourRatingService;
+import com.cristian.ec.explorecali.service.TourRatingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

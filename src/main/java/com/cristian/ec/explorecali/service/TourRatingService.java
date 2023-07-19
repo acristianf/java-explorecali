@@ -1,4 +1,4 @@
-package com.cristian.ec.explorecali.services;
+package com.cristian.ec.explorecali.service;
 
 import com.cristian.ec.explorecali.domain.TourRating;
 import com.cristian.ec.explorecali.repo.TourRatingRepository;
